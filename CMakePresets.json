@@ -1,0 +1,55 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 19,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "default",
+            "hidden": true,
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "YES"
+            }
+        },
+        {
+            "name": "linux-ninja",
+            "inherits": "default",
+            "description": "Configure for Linux using Ninja",
+            "hidden": false,
+            "generator": "Ninja",
+            "toolchainFile": "${sourceDir}/CMake/linux-toolchain.cmake"
+        },
+        {
+            "name": "windows-ninja",
+            "inherits": "default",
+            "description": "Configure for Windows using Ninja",
+            "hidden": false,
+            "generator": "Ninja",
+            "toolchainFile": "${sourceDir}/CMake/windows-toolchain.cmake"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "default",
+            "configurePreset": "default"
+        },
+        {
+            "name": "linux-ninja",
+            "configurePreset": "linux-ninja"
+        },
+        {
+            "name": "windows-ninja",
+            "configurePreset": "windows-ninja"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "default",
+            "configurePreset": "default"
+        }
+    ]
+}
